@@ -18,20 +18,17 @@ let actions = [
   ];
 
 //create table head
-//Kevin: I've removed the parameters from this and generateTable because "table" and "creatures" are already accessible variables, and don't need to be passed in
+
 function generateTableHead() {
   try {
-      //Kevin: Before adding the table, we have to remove the old table, or else you get duplicates of the table each time you click the add button
+     
       table.innerHTML = "";
 
       let thead = table.createTHead();
       let row = thead.insertRow();
 
-      //Kevin: I'm grabbing the first creature in the array and then getting its keys since they didn't exist where you had declared "data" previously
       let columnHeaders = Object.keys(creatures[0]);
 
-      //Kevin: This used to be "let key of creatures", but that would iterate through each creature in the creatures array, instead we can now iterate through the keys from the first creature to build the header row
-      // and then iterated through each key of that one creature to make the table header
       for (let header of columnHeaders) {
 
         if (header !== "visible") {
@@ -53,7 +50,6 @@ function generateTableHead() {
 
     makeTableSortable();
 
-    //Then after creating the header, you need to call into generate Table to fill out the table itself
     generateTable();
   }
   catch (err) {
@@ -65,7 +61,7 @@ function generateTableHead() {
 function generateTable() {
   let body = table.createTBody();
   var creatureIndex = 0;
-  //Kevin: I renamed this to "creature" for my own sanity
+  
   for (let creature of creatures) {
 
       if (creature.visible === true) {
